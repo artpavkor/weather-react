@@ -10,8 +10,13 @@ import {
 import SideBar from './SideBar';
 import Map from './Map';
 
-function Body({ showSideBar, handleClose, selectedCity }) {
-  const [currentWeather, setCurrentWeather] = useState('');
+function Body({
+  showSideBar,
+  handleClose,
+  selectedCity,
+  currentWeather,
+  setCurrentWeather,
+}) {
   const [forecastWeather, setForecastWeather] = useState(null);
 
   // console.log(currentWeather, 'CurrentWeather');
@@ -32,7 +37,7 @@ function Body({ showSideBar, handleClose, selectedCity }) {
       <Container className="mt-4">
         <Row>
           <Col>
-            <DayWeather text={'DayWeather'} />
+            <DayWeather currentWeather={currentWeather} text={'DayWeather'} />
           </Col>
           <Col xs={6}>
             {' '}

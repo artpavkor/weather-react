@@ -47,7 +47,6 @@ export const geoApiOptions = {
     }
 };
 
-console.log(geoApiOptions);
 
 
 

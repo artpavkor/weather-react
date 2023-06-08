@@ -7,7 +7,7 @@ const SearchHeader = ({ onSearchChange }) => {
 
   const loadOptions = (inputValue) => {
     return fetch(
-      `${GEO_API_URL}/cities?languageCode=ru&minPopulation=1000&namePrefix=${inputValue}`,
+      `${GEO_API_URL}/cities?languageCode=ru&countryIds=UA,EE&sort=name&offset=0&limit=5&minPopulation=100000&namePrefix=${inputValue}`,
       geoApiOptions
     )
       .then((response) => response.json())

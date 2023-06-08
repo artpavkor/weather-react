@@ -30,7 +30,6 @@ function SearchForm({
       code: 'ru',
     },
   ];
-  console.log(selectedData);
   const handleSubmit = async (event) => {
     event.preventDefault();
     const params = {
@@ -41,6 +40,7 @@ function SearchForm({
     };
     setSelectedData(params);
     const currentWeather = await getCurrentWeather(params);
+    console.log(currentWeather);
     setCurrentWeather(currentWeather);
     const forecastWeather = await getForecastWeather(params);
     setForecastWeather(forecastWeather);
