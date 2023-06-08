@@ -38,13 +38,16 @@ export const getForecastWeather = async (params) => {
 
 
 export const GEO_API_URL = 'https://wft-geo-db.p.rapidapi.com/v1/geo';
+const GEO_KEY = process.env.REACT_APP_GEO_API_KEY;
 export const geoApiOptions = {
     method: 'GET',
     headers: {
-        'X-RapidAPI-Key': 'e969cee839msh99d5695d3ff65f9p185819jsn2b7836f29731',
+        'X-RapidAPI-Key': GEO_KEY,
         'X-RapidAPI-Host': 'wft-geo-db.p.rapidapi.com'
     }
 };
+
+console.log(geoApiOptions);
 
 
 

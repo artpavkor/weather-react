@@ -10,7 +10,7 @@ import {
 import SideBar from './SideBar';
 import Map from './Map';
 
-function Body({ showSideBar, handleClose }) {
+function Body({ showSideBar, handleClose, selectedCity }) {
   const [currentWeather, setCurrentWeather] = useState('');
   const [forecastWeather, setForecastWeather] = useState(null);
 
@@ -36,7 +36,7 @@ function Body({ showSideBar, handleClose }) {
           </Col>
           <Col xs={6}>
             {' '}
-            <Map />
+            <Map selectedCity={selectedCity} />
           </Col>
           <Col>
             <DayWeather text={'Info?'} />
