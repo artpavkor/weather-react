@@ -4,8 +4,9 @@ import Form from 'react-bootstrap/Form';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import logo from '../../img/logo.png';
+import SearchHeader from './SearchHeader';
 
-function Header({ handleShow }) {
+function Header({ handleShow, onSearchChange }) {
   return (
     <Navbar expand="lg" className="shadow-sm bg-white rounded " sticky="top">
       <Container fluid="sm pe-4 ps-3">
@@ -29,7 +30,8 @@ function Header({ handleShow }) {
           >
             <Nav.Link onClick={handleShow}>Расширенный поиск</Nav.Link>
           </Nav>
-          <Form className="d-flex">
+          <SearchHeader onSearchChange={onSearchChange} />
+          {/* <Form className="d-flex">
             <Form.Control
               type="search"
               placeholder="Search"
@@ -37,7 +39,7 @@ function Header({ handleShow }) {
               aria-label="Search"
             />
             <Button variant="outline-success">Search</Button>
-          </Form>
+          </Form> */}
         </Navbar.Collapse>
       </Container>
     </Navbar>

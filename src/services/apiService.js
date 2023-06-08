@@ -37,8 +37,15 @@ export const getForecastWeather = async (params) => {
 }
 
 
+export const GEO_API_URL = 'https://wft-geo-db.p.rapidapi.com/v1/geo';
+export const geoApiOptions = {
+    method: 'GET',
+    headers: {
+        'X-RapidAPI-Key': 'e969cee839msh99d5695d3ff65f9p185819jsn2b7836f29731',
+        'X-RapidAPI-Host': 'wft-geo-db.p.rapidapi.com'
+    }
+};
 
-// https://api.openweathermap.org/data/2.5/weather?lat=59.437&lon=24.7536&appid=2c196c91aa402f71dcb444c6b486fe7c
 
 
 

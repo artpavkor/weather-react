@@ -6,12 +6,16 @@ import { useState } from 'react';
 
 function App() {
   const [showSideBar, setShowSideBar] = useState(false);
-  console.log(showSideBar);
+
+  const handleOnSearchChange = (searchData) => {
+    console.log(searchData, 'Search');
+  }
+
   const handleClose = () => setShowSideBar(false);
   const handleShow = () => setShowSideBar(true);
   return (
     <>
-      <Header handleShow={handleShow} />
+      <Header handleShow={handleShow} onSearchChange={handleOnSearchChange} />
       <Container className='App'>
         <Body showSideBar={showSideBar} handleClose={handleClose} />
       </Container>

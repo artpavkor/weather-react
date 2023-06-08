@@ -14,7 +14,7 @@ function Body({ showSideBar, handleClose }) {
   const [currentWeather, setCurrentWeather] = useState('');
   const [forecastWeather, setForecastWeather] = useState(null);
 
-  console.log(currentWeather, 'CurrentWeather');
+  // console.log(currentWeather, 'CurrentWeather');
 
   // ForecastWeather NEXT-----------------------
   // console.log(forecastWeather, 'ForecastWeather');
