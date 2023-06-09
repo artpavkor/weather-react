@@ -1,6 +1,6 @@
 function DayWeather({ text, currentWeather }) {
   if (currentWeather) {
-    console.log(currentWeather.weather[0].description, 'DayWeather');
+    console.log(currentWeather, 'DayWeather');
   }
 
   return (

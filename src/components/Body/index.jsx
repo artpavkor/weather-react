@@ -31,13 +31,13 @@ function Body({
     getForecastWeather().then((forecast) => {
       setForecastWeather(forecast);
     });
-  }, []);
+  }, [setCurrentWeather]);
   return (
     <>
       <Container className="mt-4">
         <Row>
           <Col>
-            <DayWeather currentWeather={currentWeather} text={'DayWeather'} />
+            <DayWeather currentWeather={currentWeather} />
           </Col>
           <Col xs={6}>
             {' '}
