@@ -18,7 +18,6 @@ function Body({
   setCurrentWeather,
 }) {
   const [forecastWeather, setForecastWeather] = useState(null);
-
   // console.log(currentWeather, 'CurrentWeather');
 
   // ForecastWeather NEXT-----------------------
@@ -32,12 +31,16 @@ function Body({
       setForecastWeather(forecast);
     });
   }, [setCurrentWeather]);
+
   return (
     <>
       <Container className="mt-4">
         <Row>
           <Col>
-            <DayWeather currentWeather={currentWeather} />
+            <DayWeather
+              currentWeather={currentWeather}
+              selectedCity={selectedCity}
+            />
           </Col>
           <Col xs={6}>
             {' '}

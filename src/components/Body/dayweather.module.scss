@@ -1,0 +1,33 @@
+.containerWeather {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    text-align: center;
+}
+
+.cityName {
+    p {
+        font-size: 18px;
+        font-weight: 500;
+    }
+}
+
+
+.cityWeather {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+    justify-content: space-around;
+
+    img {
+        width: 80px;
+        height: 80px;
+    }
+
+
+    p {
+        font-size: 40px;
+        font-weight: 400;
+    }
+}

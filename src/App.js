@@ -12,9 +12,10 @@ function App() {
 
 
   const handleOnSearchChange = async (searchData) => {
+    // Array add city
     const correctedSearchData = () => {
       const [lan, lon] = searchData.value.split(' ')
-      const selectedCityArray = [parseFloat(lan), parseFloat(lon)]
+      const selectedCityArray = [parseFloat(lan), parseFloat(lon), searchData.label]
       return selectedCityArray;
     }
     setSelectedCity(correctedSearchData())
@@ -22,7 +23,6 @@ function App() {
       lat: correctedSearchData()[0],
       lon: correctedSearchData()[1],
     };
-    console.log(params);
     const currentWeather = await getCurrentWeather(params);
     setCurrentWeather(currentWeather);
   }
