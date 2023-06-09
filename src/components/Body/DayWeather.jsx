@@ -21,7 +21,6 @@ function DayWeather({ currentWeather, selectedCity }) {
   const dayCorrected = capitalizeFirstLetter(day);
   const dayNumber = timeCorrect[2]?.slice(0, -3);
   const mounth = `${timeCorrect[1]?.slice(0, -1)}`;
-
   const temp = parseInt(currentWeather?.main?.temp);
 
   return (

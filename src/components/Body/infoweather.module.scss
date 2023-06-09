@@ -1,0 +1,15 @@
+.day {
+    display: flex;
+    justify-content: space-between;
+}
+
+.duration {
+    text-align: center;
+    font-size: 12px;
+}
+
+.col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}

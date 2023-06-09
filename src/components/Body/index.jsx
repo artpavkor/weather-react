@@ -9,6 +9,7 @@ import {
 } from '../../services/apiService';
 import SideBar from './SideBar';
 import Map from './Map';
+import InfoWeather from './InfoWeather';
 
 function Body({
   showSideBar,
@@ -47,7 +48,10 @@ function Body({
             <Map selectedCity={selectedCity} />
           </Col>
           <Col>
-            <DayWeather text={'Info?'} />
+            <InfoWeather
+              currentWeather={currentWeather}
+              selectedCity={selectedCity}
+            />
           </Col>
         </Row>
         <Row>
