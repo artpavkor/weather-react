@@ -3,12 +3,14 @@ import Container from 'react-bootstrap/Container';
 import Header from './components/Header';
 import Body from './components/Body';
 import { useState } from 'react';
-import { getCurrentWeather } from './services/apiService';
+import { getCurrentWeather, getForecastWeather } from './services/apiService';
 
 function App() {
   const [showSideBar, setShowSideBar] = useState(false);
   const [selectedCity, setSelectedCity] = useState(null);
   const [currentWeather, setCurrentWeather] = useState('');
+  const [forecastWeather, setForecastWeather] = useState(null);
+
 
 
   const handleOnSearchChange = async (searchData) => {
@@ -25,6 +27,8 @@ function App() {
     };
     const currentWeather = await getCurrentWeather(params);
     setCurrentWeather(currentWeather);
+    const forecastWeather = await getForecastWeather(params);
+    setForecastWeather(forecastWeather);
   }
 
   const handleClose = () => setShowSideBar(false);
@@ -33,7 +37,14 @@ function App() {
     <>
       <Header handleShow={handleShow} onSearchChange={handleOnSearchChange} />
       <Container className='App'>
-        <Body showSideBar={showSideBar} handleClose={handleClose} selectedCity={selectedCity} setCurrentWeather={setCurrentWeather} currentWeather={currentWeather} />
+        <Body
+          showSideBar={showSideBar}
+          handleClose={handleClose}
+          forecastWeather={forecastWeather}
+          setForecastWeather={setForecastWeather}
+          selectedCity={selectedCity}
+          setCurrentWeather={setCurrentWeather}
+          currentWeather={currentWeather} />
       </Container>
     </>
   );

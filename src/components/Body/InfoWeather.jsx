@@ -12,14 +12,15 @@ function InfoWeather({ currentWeather, selectedCity }) {
   const wind = currentWeather?.wind?.speed;
   const sunriseDay = moment.unix(currentWeather?.sys?.sunrise).format('k:kk');
   const sunsetDay = moment.unix(currentWeather?.sys?.sunset).format('k:kk');
-  //  Hour ????
-  const durationDay =
-    currentWeather?.sys?.sunset - currentWeather?.sys?.sunrise;
-  const durationDayCorrected = moment.unix(durationDay).format('k:kk');
-  const test = moment(currentWeather?.sys?.sunset * 1000).diff(
-    moment(currentWeather?.sys?.sunrise * 1000)
-  );
-  console.log(moment(test).format('k:kk'));
+
+  const dayLenght = () => {
+    const minuteLenght =
+      Number(sunsetDay.slice(-2)) - Number(sunriseDay.slice(-2));
+    const hourLenght = parseFloat(sunsetDay) - parseFloat(sunriseDay);
+    return [hourLenght, minuteLenght];
+  };
+  const arrayLenghtDay = dayLenght();
+
   return (
     <div
       style={{ height: '400px' }}
@@ -67,9 +68,7 @@ function InfoWeather({ currentWeather, selectedCity }) {
         <p className={styles.duration}>
           Световой день
           <br />
-          {/* Вычесть MomentJS */}
-          {/* {durationDayCorrected.slice(0, -3)} ч {durationDayCorrected.slice(2)}{' '}  */}
-          мин
+          {arrayLenghtDay[0]} ч {arrayLenghtDay[1]} мин
         </p>
         <p className={styles.col}>
           <img width={42} src={sunset} alt="sunset" />

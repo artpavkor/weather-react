@@ -10,6 +10,7 @@ import {
 import SideBar from './SideBar';
 import Map from './Map';
 import InfoWeather from './InfoWeather';
+import ForecastWeather from './ForecastWeather';
 
 function Body({
   showSideBar,
@@ -17,13 +18,9 @@ function Body({
   selectedCity,
   currentWeather,
   setCurrentWeather,
+  forecastWeather,
+  setForecastWeather,
 }) {
-  const [forecastWeather, setForecastWeather] = useState(null);
-  // console.log(currentWeather, 'CurrentWeather');
-
-  // ForecastWeather NEXT-----------------------
-  // console.log(forecastWeather, 'ForecastWeather');
-
   useEffect(() => {
     getCurrentWeather().then((weather) => {
       setCurrentWeather(weather);
@@ -32,7 +29,7 @@ function Body({
       setForecastWeather(forecast);
     });
   }, [setCurrentWeather]);
-
+  console.log(currentWeather);
   return (
     <>
       <Container className="mt-4">
@@ -56,7 +53,7 @@ function Body({
         </Row>
         <Row>
           <Col>
-            <DayWeather text={'5 day forecast'} />
+            <ForecastWeather forecastWeather={forecastWeather} />
           </Col>
         </Row>
         <Row>
