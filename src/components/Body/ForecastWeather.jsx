@@ -52,145 +52,83 @@ function ForecastWeather({ forecastWeather }) {
     'Воскресенье',
   ];
 
+  let testObj = [
+    ['Понедельник', monday],
+    ['Вторник', tuesday],
+    ['Среда', wednesday],
+    ['Четверг', thursday],
+    ['Пятница', friday],
+    ['Суббота', saturday],
+    ['Воскресенье', sunday],
+  ];
+
+  // console.log(testObj[0]);
+
   // const capitalizeFirstLetter = (string) => {
   //   return string.charAt(0).toUpperCase() + string.slice(1);
   // };
-  // const dayInAWeek = new Date().getDay();
-  // const forecastDayInAWeek = weekDaysData
-  //   .slice(dayInAWeek, weekDaysData.length)
-  //   .concat(weekDaysData.slice(0, dayInAWeek));
-
+  const dayInAWeek = new Date().getDay();
+  const forecastDayInAWeek = testObj
+    .slice(dayInAWeek, testObj.length)
+    .concat(testObj.slice(0, dayInAWeek - 2));
+  // console.log(monday);
+  // console.log(forecastDayInAWeek, 'forecastDayInAWeek');
+  // console.log(moment.unix(1686776400).format());
   return (
     <div
       style={{ minHeight: '400px' }}
       className="shadow-sm p-3 mb-4 bg-white rounded"
     >
-      <Accordion defaultActiveKey="0">
-        <Accordion.Item eventKey="0">
-          <Accordion.Header>{weekDaysData[0]}</Accordion.Header>
-          <Accordion.Body>
-            <Container>
-              <Row>
-                <Col>Часы</Col>
-                <Col>Температура</Col>
-                <Col className="text-center">Ветер</Col>
-                <Col className="text-center">Давление</Col>
-                <Col className="text-center">Влажность</Col>
-              </Row>
-              {monday.map((elem, idx) => {
-                return (
-                  <Row className={`${styles.rowForecast} mt-4`} key={idx}>
-                    {/* <Col>{moment.unix(elem.elem.dt).format('HH:mm')}</Col> */}
-                    <Col>{moment.unix(elem.elem.dt).format('DD.MM HH:mm')}</Col>
-                    <Col className={styles.rowTemp}>
-                      <img
-                        width={28}
-                        src={`icons/${
-                          elem ? elem.elem.weather[0].icon : '01d'
-                        }.png`}
-                        alt=""
-                      />
-                      <p>{parseInt(elem.elem.main.temp)}°</p>
-                    </Col>
-                    <Col className="text-center">
-                      {parseInt(elem.elem.wind.speed)} м/с
-                    </Col>
-                    <Col className="text-center">
-                      {String(elem.elem.main.pressure / 1333).slice(2, 5)} мм
-                    </Col>
-                    <Col className="text-center">
-                      {elem.elem.main.humidity}%
-                    </Col>
+      <Accordion defaultActiveKey={[0]} alwaysOpen>
+        {forecastDayInAWeek.map((data, idx) => {
+          const weather = data[1];
+          return (
+            <Accordion.Item eventKey={idx} key={idx}>
+              <Accordion.Header>{data[0]}</Accordion.Header>
+              <Accordion.Body>
+                <Container>
+                  <Row>
+                    <Col>Часы</Col>
+                    <Col>Температура</Col>
+                    <Col className="text-center">Ветер</Col>
+                    <Col className="text-center">Давление</Col>
+                    <Col className="text-center">Влажность</Col>
                   </Row>
-                );
-              })}
-            </Container>
-          </Accordion.Body>
-        </Accordion.Item>
-        {/* 2 */}
-        <Accordion.Item eventKey="1">
-          <Accordion.Header>{weekDaysData[1]}</Accordion.Header>
-          <Accordion.Body>
-            <Container>
-              <Row>
-                <Col>Часы</Col>
-                <Col>Температура</Col>
-                <Col className="text-center">Ветер</Col>
-                <Col className="text-center">Давление</Col>
-                <Col className="text-center">Влажность</Col>
-              </Row>
-              {tuesday.map((elem, idx) => {
-                return (
-                  <Row className={`${styles.rowForecast} mt-4`} key={idx}>
-                    {/* <Col>{moment.unix(elem.elem.dt).format('HH:mm')}</Col> */}
-                    <Col>{moment.unix(elem.elem.dt).format('DD.MM HH:mm')}</Col>
-                    <Col className={styles.rowTemp}>
-                      <img
-                        width={28}
-                        src={`icons/${
-                          elem ? elem.elem.weather[0].icon : '01d'
-                        }.png`}
-                        alt=""
-                      />
-                      <p>{parseInt(elem.elem.main.temp)}°</p>
-                    </Col>
-                    <Col className="text-center">
-                      {parseInt(elem.elem.wind.speed)} м/с
-                    </Col>
-                    <Col className="text-center">
-                      {String(elem.elem.main.pressure / 1333).slice(2, 5)} мм
-                    </Col>
-                    <Col className="text-center">
-                      {elem.elem.main.humidity}%
-                    </Col>
-                  </Row>
-                );
-              })}
-            </Container>
-          </Accordion.Body>
-        </Accordion.Item>
-        {/* 3 */}
-        <Accordion.Item eventKey="2">
-          <Accordion.Header>{weekDaysData[2]}</Accordion.Header>
-          <Accordion.Body>
-            <Container>
-              <Row>
-                <Col>Часы</Col>
-                <Col>Температура</Col>
-                <Col className="text-center">Ветер</Col>
-                <Col className="text-center">Давление</Col>
-                <Col className="text-center">Влажность</Col>
-              </Row>
-              {wednesday.map((elem, idx) => {
-                return (
-                  <Row className={`${styles.rowForecast} mt-4`} key={idx}>
-                    {/* <Col>{moment.unix(elem.elem.dt).format('HH:mm')}</Col> */}
-                    <Col>{moment.unix(elem.elem.dt).format('DD.MM HH:mm')}</Col>
-                    <Col className={styles.rowTemp}>
-                      <img
-                        width={28}
-                        src={`icons/${
-                          elem ? elem.elem.weather[0].icon : '01d'
-                        }.png`}
-                        alt=""
-                      />
-                      <p>{parseInt(elem.elem.main.temp)}°</p>
-                    </Col>
-                    <Col className="text-center">
-                      {parseInt(elem.elem.wind.speed)} м/с
-                    </Col>
-                    <Col className="text-center">
-                      {String(elem.elem.main.pressure / 1333).slice(2, 5)} мм
-                    </Col>
-                    <Col className="text-center">
-                      {elem.elem.main.humidity}%
-                    </Col>
-                  </Row>
-                );
-              })}
-            </Container>
-          </Accordion.Body>
-        </Accordion.Item>
+                  {weather?.map((data, idx) => {
+                    return (
+                      <Row className={`${styles.rowForecast} mt-4`} key={idx}>
+                        {/* <Col>{moment.unix(data.elem.dt).format('HH:mm')}</Col> */}
+                        <Col>
+                          {moment.unix(data.elem.dt).format('DD.MM HH:mm')}
+                        </Col>
+                        <Col className={styles.rowTemp}>
+                          <img
+                            width={28}
+                            src={`icons/${
+                              data ? data.elem.weather[0].icon : '01d'
+                            }.png`}
+                            alt=""
+                          />
+                          <p>{parseInt(data.elem.main.temp)}°</p>
+                        </Col>
+                        <Col className="text-center">
+                          {parseInt(data.elem.wind.speed)} м/с
+                        </Col>
+                        <Col className="text-center">
+                          {String(data.elem.main.pressure / 1333).slice(2, 5)}{' '}
+                          мм
+                        </Col>
+                        <Col className="text-center">
+                          {data.elem.main.humidity}%
+                        </Col>
+                      </Row>
+                    );
+                  })}
+                </Container>
+              </Accordion.Body>
+            </Accordion.Item>
+          );
+        })}
       </Accordion>
     </div>
   );
