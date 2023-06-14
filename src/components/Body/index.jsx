@@ -29,7 +29,6 @@ function Body({
       setForecastWeather(forecast);
     });
   }, [setCurrentWeather]);
-  console.log(currentWeather);
   return (
     <>
       <Container className="mt-4">

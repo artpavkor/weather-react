@@ -1,0 +1,17 @@
+.rowForecast {
+    border: 1px solid rgb(239, 245, 255, .9);
+    padding: 7px;
+    border-radius: 5px;
+}
+
+.rowTemp {
+    display: flex;
+    align-items: center;
+    margin: auto;
+
+    img {}
+
+    p {
+        margin: auto 20px;
+    }
+}
