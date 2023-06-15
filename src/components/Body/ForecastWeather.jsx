@@ -3,6 +3,7 @@ import 'moment/locale/ru';
 import Accordion from 'react-bootstrap/Accordion';
 import styles from './forecastweather.module.scss';
 import { Col, Container, Row } from 'react-bootstrap';
+import Pagination from 'react-bootstrap/Pagination';
 
 function ForecastWeather({ forecastWeather }) {
   const forecastTime = forecastWeather?.list.map((elem) => {
@@ -16,7 +17,6 @@ function ForecastWeather({ forecastWeather }) {
   const friday = [];
   const saturday = [];
   const sunday = [];
-  // console.log(friday, 'friday');
 
   for (let i = 0; i < forecastTime?.length; i++) {
     if (forecastTime[i].day === 'понедельник') {
@@ -42,16 +42,6 @@ function ForecastWeather({ forecastWeather }) {
     }
   }
 
-  const weekDaysData = [
-    'Понедельник',
-    'Вторник',
-    'Среда',
-    'Четверг',
-    'Пятница',
-    'Суббота',
-    'Воскресенье',
-  ];
-
   let testObj = [
     ['Понедельник', monday],
     ['Вторник', tuesday],
@@ -62,8 +52,6 @@ function ForecastWeather({ forecastWeather }) {
     ['Воскресенье', sunday],
   ];
 
-  // console.log(testObj[0]);
-
   // const capitalizeFirstLetter = (string) => {
   //   return string.charAt(0).toUpperCase() + string.slice(1);
   // };
@@ -71,14 +59,13 @@ function ForecastWeather({ forecastWeather }) {
   const forecastDayInAWeek = testObj
     .slice(dayInAWeek, testObj.length)
     .concat(testObj.slice(0, dayInAWeek - 2));
-  // console.log(monday);
-  // console.log(forecastDayInAWeek, 'forecastDayInAWeek');
-  // console.log(moment.unix(1686776400).format());
+
   return (
     <div
       style={{ minHeight: '400px' }}
       className="shadow-sm p-3 mb-4 bg-white rounded"
     >
+      <p style={{ fontSize: '20px', fontWeight: 600 }}>Прогноз на 5 дней</p>
       <Accordion defaultActiveKey={[0]} alwaysOpen>
         {forecastDayInAWeek.map((data, idx) => {
           const weather = data[1];
@@ -87,23 +74,36 @@ function ForecastWeather({ forecastWeather }) {
               <Accordion.Header>{data[0]}</Accordion.Header>
               <Accordion.Body>
                 <Container>
-                  <Row>
-                    <Col>Часы</Col>
-                    <Col>Температура</Col>
-                    <Col className="text-center">Ветер</Col>
-                    <Col className="text-center">Давление</Col>
-                    <Col className="text-center">Влажность</Col>
+                  <Row className={styles.header}>
+                    <Col className={styles.textHeader}>
+                      <p>Часы</p>
+                    </Col>
+                    <Col className={styles.textHeader}>
+                      <p>Температура</p>
+                    </Col>
+                    <Col className={styles.textHeaderAlign}>
+                      <p>Ветер</p>
+                    </Col>
+                    <Col className={styles.textHeaderAlign}>
+                      <p>Давление</p>
+                    </Col>
+                    <Col className={styles.textHeaderAlign}>
+                      <p>Влажность</p>
+                    </Col>
                   </Row>
                   {weather?.map((data, idx) => {
                     return (
                       <Row className={`${styles.rowForecast} mt-4`} key={idx}>
                         {/* <Col>{moment.unix(data.elem.dt).format('HH:mm')}</Col> */}
-                        <Col>
-                          {moment.unix(data.elem.dt).format('DD.MM HH:mm')}
+                        <Col className={styles.colForecast}>
+                          <span>
+                            <span>
+                              {moment.unix(data.elem.dt).format('DD.MM HH:mm')}
+                            </span>
+                          </span>
                         </Col>
                         <Col className={styles.rowTemp}>
                           <img
-                            width={28}
                             src={`icons/${
                               data ? data.elem.weather[0].icon : '01d'
                             }.png`}
@@ -111,15 +111,19 @@ function ForecastWeather({ forecastWeather }) {
                           />
                           <p>{parseInt(data.elem.main.temp)}°</p>
                         </Col>
-                        <Col className="text-center">
-                          {parseInt(data.elem.wind.speed)} м/с
+                        <Col className={styles.colForecastAlign}>
+                          <span>{parseInt(data.elem.wind.speed)} м/с</span>
                         </Col>
-                        <Col className="text-center">
-                          {String(data.elem.main.pressure / 1333).slice(2, 5)}{' '}
-                          мм
+                        <Col className={styles.colForecastAlign}>
+                          <span>
+                            {String(data.elem.main.pressure / 1333).slice(2, 5)}{' '}
+                            мм
+                          </span>
                         </Col>
-                        <Col className="text-center">
-                          {data.elem.main.humidity}%
+                        <Col className={styles.colForecastAlign}>
+                          <span className={styles.humidity}>
+                            {data.elem.main.humidity}%
+                          </span>
                         </Col>
                       </Row>
                     );
@@ -135,31 +139,3 @@ function ForecastWeather({ forecastWeather }) {
 }
 
 export default ForecastWeather;
-
-{
-  /* <div> */
-}
-{
-  /* <img
-  src={`icons/${elem ? elem.weather[0].icon : '01d'}.png`}
-  alt="icon-weather"
-/> */
-}
-{
-  /* </div>
-<div className={styles.row}>
-<div>
-  <p>
-    <span>
-      {' '}
-      {capitalizeFirstLetter(
-        elem.elem.weather[0].description
-      )}
-    </span>
-  </p>
-</div>
-<div className={styles.time}>
-  <p>{moment.unix(elem.elem.dt).format('HH:mm')}</p>
-</div>
-</div> */
-}

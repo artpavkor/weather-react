@@ -3,6 +3,7 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import logo from '../../img/logo.png';
 import SearchHeader from './SearchHeader';
+import { Col } from 'react-bootstrap';
 
 function Header({ handleShow, onSearchChange }) {
   return (
@@ -21,14 +22,12 @@ function Header({ handleShow, onSearchChange }) {
         </Navbar.Brand>
         <Navbar.Toggle aria-controls="navbarScroll" />
         <Navbar.Collapse id="navbarScroll">
-          <Nav
-            className="justify-content-end flex-grow-1 pe-3 "
-            style={{ maxHeight: '100px' }}
-            navbarScroll
-          >
+          <Nav className="justify-content-end flex-grow-1 pe-3 " navbarScroll>
             <Nav.Link onClick={handleShow}>Расширенный поиск</Nav.Link>
           </Nav>
-          <SearchHeader onSearchChange={onSearchChange} />
+          <Col>
+            <SearchHeader onSearchChange={onSearchChange} />
+          </Col>
         </Navbar.Collapse>
       </Container>
     </Navbar>

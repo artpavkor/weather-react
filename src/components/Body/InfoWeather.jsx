@@ -4,8 +4,6 @@ import styles from './infoweather.module.scss';
 import moment from 'moment';
 
 function InfoWeather({ currentWeather, selectedCity }) {
-  //   console.log(currentWeather);
-
   const pressure = currentWeather?.main?.pressure / 1333;
   const pressureCorrect = String(pressure).slice(2, 5);
   const visibility = String(currentWeather?.visibility / 100).split('');
@@ -20,13 +18,12 @@ function InfoWeather({ currentWeather, selectedCity }) {
     return [hourLenght, minuteLenght];
   };
   const arrayLenghtDay = dayLenght();
-
   return (
     <div
       style={{ height: '400px' }}
       className="shadow-sm p-3 mb-4 bg-white rounded"
     >
-      <div>
+      <div className={styles.info}>
         <p>
           Ощущается как
           <span> +{parseInt(currentWeather?.main?.feels_like)}°</span>

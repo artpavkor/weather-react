@@ -33,7 +33,6 @@ const SearchHeader = ({ onSearchChange }) => {
     control: (provided, state) => ({
       ...provided,
       borderRadius: '5px',
-      minWidth: '400px',
       border: '1px solid #ccc',
       boxShadow: state.isFocused ? '0 0 0 3px #EFF5FF' : null,
     }),

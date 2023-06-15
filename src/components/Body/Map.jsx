@@ -29,18 +29,20 @@ function Map({ selectedCity }) {
   }
 
   return (
-    <MapContainer center={position} zoom={8} scrollWheelZoom={false}>
-      <TileLayer
-        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-        url="https://maps.geoapify.com/v1/tile/maptiler-3d/{z}/{x}/{y}.png?apiKey=9c94c3e8da904685b81d6b3b9aeaf159"
-      />
-      <Marker position={position} icon={customIcon}>
-        <Popup closeOnClick={true}>
-          A pretty CSS3 popup. <br /> Easily customizable.
-        </Popup>
-      </Marker>
-      <ResetCenterView selectedCity={selectedCity} />
-    </MapContainer>
+    <div style={{ marginBottom: '23px' }}>
+      <MapContainer center={position} zoom={8} scrollWheelZoom={false}>
+        <TileLayer
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+          url="https://maps.geoapify.com/v1/tile/maptiler-3d/{z}/{x}/{y}.png?apiKey=9c94c3e8da904685b81d6b3b9aeaf159"
+        />
+        <Marker position={position} icon={customIcon}>
+          <Popup closeOnClick={true}>
+            A pretty CSS3 popup. <br /> Easily customizable.
+          </Popup>
+        </Marker>
+        <ResetCenterView selectedCity={selectedCity} />
+      </MapContainer>
+    </div>
   );
 }
 
