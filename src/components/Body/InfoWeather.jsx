@@ -3,21 +3,21 @@ import sunrice from '../../img/sunrise.png';
 import styles from './infoweather.module.scss';
 import moment from 'moment';
 
-function InfoWeather({ currentWeather, selectedCity }) {
+function InfoWeather({ currentWeather }) {
   const pressure = currentWeather?.main?.pressure / 1333;
   const pressureCorrect = String(pressure).slice(2, 5);
   const visibility = String(currentWeather?.visibility / 100).split('');
   const wind = currentWeather?.wind?.speed;
-  const sunriseDay = moment.unix(currentWeather?.sys?.sunrise).format('k:kk');
-  const sunsetDay = moment.unix(currentWeather?.sys?.sunset).format('k:kk');
 
-  const dayLenght = () => {
-    const minuteLenght =
-      Number(sunsetDay.slice(-2)) - Number(sunriseDay.slice(-2));
-    const hourLenght = parseFloat(sunsetDay) - parseFloat(sunriseDay);
-    return [hourLenght, minuteLenght];
-  };
-  const arrayLenghtDay = dayLenght();
+  const sunriseday = moment.unix(currentWeather?.sys?.sunrise);
+  const sunsetday = moment.unix(currentWeather?.sys?.sunset);
+
+  const diff = moment.duration(sunsetday.diff(sunriseday));
+  const hours = diff.hours();
+  const minutes = diff.minutes();
+
+  console.log('Разница:', hours, 'часов', minutes, 'минут');
+
   return (
     <div
       style={{ height: '400px' }}
@@ -60,16 +60,16 @@ function InfoWeather({ currentWeather, selectedCity }) {
       <div className={styles.day}>
         <p className={styles.col}>
           <img width={42} src={sunrice} alt="sunset" />
-          {sunriseDay}
+          {sunriseday.format('HH:mm')}
         </p>
         <p className={styles.duration}>
           Световой день
           <br />
-          {arrayLenghtDay[0]} ч {arrayLenghtDay[1]} мин
+          {hours} ч {minutes} мин
         </p>
         <p className={styles.col}>
           <img width={42} src={sunset} alt="sunset" />
-          {sunsetDay}
+          {sunsetday.format('HH:mm')}
         </p>
       </div>
     </div>

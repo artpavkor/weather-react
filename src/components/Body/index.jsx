@@ -43,10 +43,7 @@ function Body({
             <Map selectedCity={selectedCity} />
           </Col>
           <Col>
-            <InfoWeather
-              currentWeather={currentWeather}
-              selectedCity={selectedCity}
-            />
+            <InfoWeather currentWeather={currentWeather} />
           </Col>
         </Row>
         <Row>
