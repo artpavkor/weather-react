@@ -3,7 +3,6 @@ import 'moment/locale/ru';
 import Accordion from 'react-bootstrap/Accordion';
 import styles from './forecastweather.module.scss';
 import { Col, Container, Row } from 'react-bootstrap';
-import Pagination from 'react-bootstrap/Pagination';
 
 function ForecastWeather({ forecastWeather }) {
   const forecastTime = forecastWeather?.list.map((elem) => {
@@ -51,10 +50,6 @@ function ForecastWeather({ forecastWeather }) {
     ['Суббота', saturday],
     ['Воскресенье', sunday],
   ];
-
-  // const capitalizeFirstLetter = (string) => {
-  //   return string.charAt(0).toUpperCase() + string.slice(1);
-  // };
   const dayInAWeek = new Date().getDay();
   const forecastDayInAWeek = testObj
     .slice(dayInAWeek, testObj.length)

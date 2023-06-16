@@ -2,7 +2,7 @@ import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import DayWeather from './DayWeather';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import {
   getCurrentWeather,
   getForecastWeather,
@@ -11,6 +11,7 @@ import SideBar from './SideBar';
 import Map from './Map';
 import InfoWeather from './InfoWeather';
 import ForecastWeather from './ForecastWeather';
+import TemperaturaChart from './TemperaturaChart';
 
 function Body({
   showSideBar,
@@ -28,7 +29,7 @@ function Body({
     getForecastWeather().then((forecast) => {
       setForecastWeather(forecast);
     });
-  }, [setCurrentWeather]);
+  }, [setCurrentWeather, setForecastWeather]);
   return (
     <>
       <Container className="mt-4">
@@ -53,10 +54,10 @@ function Body({
         </Row>
         <Row>
           <Col>
-            <DayWeather text={'Daylight hours'} />
+            <TemperaturaChart forecastWeather={forecastWeather} />
           </Col>
           <Col>
-            <DayWeather text={'popular queries'} />
+            <TemperaturaChart forecastWeather={forecastWeather} />
           </Col>
         </Row>
       </Container>

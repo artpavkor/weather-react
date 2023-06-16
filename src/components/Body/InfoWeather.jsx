@@ -16,8 +16,6 @@ function InfoWeather({ currentWeather }) {
   const hours = diff.hours();
   const minutes = diff.minutes();
 
-  console.log('Разница:', hours, 'часов', minutes, 'минут');
-
   return (
     <div
       style={{ height: '400px' }}
