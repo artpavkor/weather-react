@@ -10,11 +10,9 @@ function App() {
   const [selectedCity, setSelectedCity] = useState(null);
   const [currentWeather, setCurrentWeather] = useState('');
   const [forecastWeather, setForecastWeather] = useState(null);
-
-
+  const [isLoading, setIsLoading] = useState(null);
 
   const handleOnSearchChange = async (searchData) => {
-    // Array add city
     const correctedSearchData = () => {
       const [lan, lon] = searchData.value.split(' ')
       const selectedCityArray = [parseFloat(lan), parseFloat(lon), searchData.label]
@@ -30,12 +28,14 @@ function App() {
     const forecastWeather = await getForecastWeather(params);
     setForecastWeather(forecastWeather);
   }
-
   const handleClose = () => setShowSideBar(false);
   const handleShow = () => setShowSideBar(true);
+
   return (
     <>
-      <Header handleShow={handleShow} onSearchChange={handleOnSearchChange} />
+      {!isLoading ? '' :
+        <Header handleShow={handleShow} onSearchChange={handleOnSearchChange} />
+      }
       <Container className='App'>
         <Body
           showSideBar={showSideBar}
@@ -44,7 +44,9 @@ function App() {
           setForecastWeather={setForecastWeather}
           selectedCity={selectedCity}
           setCurrentWeather={setCurrentWeather}
-          currentWeather={currentWeather} />
+          currentWeather={currentWeather}
+          isLoading={isLoading}
+          setIsLoading={setIsLoading} />
       </Container>
     </>
   );

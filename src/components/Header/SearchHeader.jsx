@@ -5,23 +5,24 @@ import { GEO_API_URL, geoApiOptions } from '../../services/apiService';
 const SearchHeader = ({ onSearchChange }) => {
   const [search, setSearch] = useState(null);
 
-  const loadOptions = (inputValue) => {
-    return fetch(
-      `${GEO_API_URL}/cities?languageCode=ru&countryIds=UA,EE,PL&sort=name&offset=0&limit=5&minPopulation=1000&namePrefix=${inputValue}`,
-      geoApiOptions
-    )
-      .then((response) => response.json())
-      .then((response) => {
-        return {
-          options: response.data.map((city) => {
-            return {
-              value: `${city.latitude} ${city.longitude}`,
-              label: `${city.name} ${city.countryCode}`,
-            };
-          }),
-        };
-      })
-      .catch((err) => console.error(err));
+  const loadOptions = async (inputValue) => {
+    try {
+      const response = await fetch(
+        `${GEO_API_URL}/cities?languageCode=ru&countryIds=UA,EE,PL&sort=name&offset=0&limit=5&minPopulation=1000&namePrefix=${inputValue}`,
+        geoApiOptions
+      );
+      const data = await response.json();
+
+      return {
+        options: data.data.map((city) => ({
+          value: `${city.latitude} ${city.longitude}`,
+          label: `${city.name} ${city.countryCode}`,
+        })),
+      };
+    } catch (err) {
+      console.error(err);
+      return { options: [] };
+    }
   };
 
   const handleOnChange = (searchData) => {
