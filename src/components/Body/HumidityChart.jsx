@@ -5,17 +5,16 @@ import {
   YAxis,
   Tooltip,
   ResponsiveContainer,
-  Bar,
-  ComposedChart,
+  Line,
+  LineChart,
 } from 'recharts';
+import styles from './humiditychart.module.scss';
 
-import styles from './temperaturachart.module.scss';
-
-function TemperaturaChart({ forecastWeather }) {
+function HumidityChart({ forecastWeather }) {
   const data = forecastWeather?.list.map((elem) => {
     const dataTimeTemp = {
       time: moment.unix(elem.dt).format('DD.MM HH:mm'),
-      temp: parseInt(elem.main.temp),
+      humidity: elem.main.humidity,
       date: moment.unix(elem.dt).format('DD.MM.YY'),
       hours: moment.unix(elem.dt).format('HH:mm'),
     };
@@ -27,7 +26,7 @@ function TemperaturaChart({ forecastWeather }) {
         <div className={styles.customTooltip}>
           <p
             className={styles.label}
-          >{`Температура: ${payload[0]?.payload.temp}°`}</p>
+          >{`Влажность: ${payload[0]?.payload.humidity}%`}</p>
           <p
             className={styles.label}
           >{`Время: ${payload[0]?.payload.hours}`}</p>
@@ -44,9 +43,11 @@ function TemperaturaChart({ forecastWeather }) {
       style={{ height: '300px' }}
       className="shadow-sm p-3 mb-4 bg-white rounded"
     >
-      <h5 style={{ textAlign: 'end' }}>Температура</h5>
+      <h5 style={{ textAlign: 'end' }}>Влажность</h5>
       <ResponsiveContainer width={'100%'} height={250}>
-        <ComposedChart
+        <LineChart
+          width={500}
+          height={300}
           data={data}
           margin={{
             top: 15,
@@ -62,17 +63,22 @@ function TemperaturaChart({ forecastWeather }) {
             style={{ fontSize: '10px' }}
           />
           <YAxis
-            unit={'°'}
+            unit={'%'}
             style={{ fontSize: '12px' }}
             axisLine={false}
             interval="preserveStart"
           />
           <Tooltip content={data ? CustomTooltip : null} />
-          <Bar dataKey="temp" barSize={5} fill="#5cadec" />
-        </ComposedChart>
+          <Line
+            type="monotone"
+            dataKey="humidity"
+            stroke="#ff7300"
+            strokeWidth={1}
+          />
+        </LineChart>
       </ResponsiveContainer>
     </div>
   );
 }
 
-export default TemperaturaChart;
+export default HumidityChart;

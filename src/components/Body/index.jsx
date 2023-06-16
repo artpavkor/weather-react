@@ -12,6 +12,7 @@ import Map from './Map';
 import InfoWeather from './InfoWeather';
 import ForecastWeather from './ForecastWeather';
 import TemperaturaChart from './TemperaturaChart';
+import HumidityChart from './HumidityChart';
 
 function Body({
   showSideBar,
@@ -49,15 +50,15 @@ function Body({
         </Row>
         <Row>
           <Col>
-            <ForecastWeather forecastWeather={forecastWeather} />
+            <TemperaturaChart forecastWeather={forecastWeather} />
+          </Col>
+          <Col>
+            <HumidityChart forecastWeather={forecastWeather} />
           </Col>
         </Row>
         <Row>
           <Col>
-            <TemperaturaChart forecastWeather={forecastWeather} />
-          </Col>
-          <Col>
-            <TemperaturaChart forecastWeather={forecastWeather} />
+            <ForecastWeather forecastWeather={forecastWeather} />
           </Col>
         </Row>
       </Container>
