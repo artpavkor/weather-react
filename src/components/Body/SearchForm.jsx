@@ -1,7 +1,7 @@
-import { FormGroup, FormLabel, Row } from 'react-bootstrap';
+import { FormGroup, FormLabel } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
+import { useState } from 'react';
 import Form from 'react-bootstrap/Form';
-import Col from 'react-bootstrap/Col';
 import {
   getCurrentWeather,
   defaultParams,
@@ -12,10 +12,10 @@ function SearchForm({
   setCurrentWeather,
   setForecastWeather,
   closeSideBar,
-  selectedData,
-  setSelectedData,
+  setSelectedCity,
 }) {
-  const units = ['standard', 'metric', 'imperial'];
+  const [selectedData, setSelectedData] = useState(null);
+
   const languages = [
     {
       label: 'English',
@@ -35,61 +35,46 @@ function SearchForm({
     const params = {
       lat: event.target.latitude.value,
       lon: event.target.longitude.value,
-      units: event.target.unit.value,
       lang: event.target.language.value,
     };
     setSelectedData(params);
     const currentWeather = await getCurrentWeather(params);
-    console.log(currentWeather);
     setCurrentWeather(currentWeather);
     const forecastWeather = await getForecastWeather(params);
     setForecastWeather(forecastWeather);
     closeSideBar();
+    setSelectedCity([
+      parseFloat(params.lat),
+      parseFloat(params.lon),
+      `${currentWeather?.name} ${currentWeather?.sys.country}`,
+    ]);
   };
   const defaultValue = selectedData || defaultParams;
   return (
     <Form onSubmit={handleSubmit}>
       <Form.Group className="mb-3 mt-3">
-        <Form.Label>Latitude</Form.Label>
+        <Form.Label>Широта</Form.Label>
         <Form.Control
           type="text"
           placeholder="Latitude"
           name="latitude"
           defaultValue={defaultValue.lat}
         />
-        <Form.Text className="text-muted">Example: 59.4370</Form.Text>
+        <Form.Text className="text-muted">Пример: 59.4370</Form.Text>
       </Form.Group>
       <Form.Group className="mb-3">
-        <Form.Label>Longitude</Form.Label>
+        <Form.Label>Долгота</Form.Label>
         <Form.Control
           type="text"
           placeholder="Longitude"
           name="longitude"
           defaultValue={defaultValue.lon}
         />
-        <Form.Text className="text-muted">Example: 24.7536</Form.Text>
+        <Form.Text className="text-muted">Пример: 24.7536</Form.Text>
       </Form.Group>
-      <Row>
-        <Col>
-          <FormGroup className="mb-3">
-            <FormLabel>Units</FormLabel>
-            {units.map((elem, index) => (
-              <Form.Check
-                type="radio"
-                label={elem}
-                key={index}
-                name="unit"
-                value={elem}
-                defaultChecked={elem === defaultValue.units}
-              />
-            ))}
-            <Form.Text className="text-muted">Measurement type</Form.Text>
-          </FormGroup>
-        </Col>
-      </Row>
       <FormGroup className="mb-3">
-        <FormLabel>Languages</FormLabel>
-        <Form.Select name="language" defaultValue={defaultValue.lang}>
+        <FormLabel>Язык</FormLabel>
+        <Form.Select name="language" disabled defaultValue={defaultValue.lang}>
           {languages.map((elem, index) => (
             <option value={elem.code} key={index}>
               {elem.label}
@@ -97,10 +82,9 @@ function SearchForm({
           ))}
         </Form.Select>
       </FormGroup>
-
       <div className="d-grid">
         <Button variant="primary" type="submit">
-          Search
+          Поиск
         </Button>
       </div>
     </Form>

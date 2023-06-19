@@ -1,4 +1,4 @@
-import moment from 'moment/moment';
+import moment from 'moment';
 import 'moment/locale/ru';
 import Accordion from 'react-bootstrap/Accordion';
 import styles from './forecastweather.module.scss';
@@ -50,10 +50,10 @@ function ForecastWeather({ forecastWeather }) {
     ['Суббота', saturday],
     ['Воскресенье', sunday],
   ];
+
   const dayInAWeek = new Date().getDay();
-  const forecastDayInAWeek = testObj
-    .slice(dayInAWeek, testObj.length)
-    .concat(testObj.slice(0, dayInAWeek - 2));
+  testObj = [...testObj.slice(dayInAWeek), ...testObj.slice(0, dayInAWeek)];
+  const forecastDayInAWeek = testObj.slice(0, 5);
 
   return (
     <div
@@ -89,7 +89,6 @@ function ForecastWeather({ forecastWeather }) {
                   {weather?.map((data, idx) => {
                     return (
                       <Row className={`${styles.rowForecast} mt-4`} key={idx}>
-                        {/* <Col>{moment.unix(data.elem.dt).format('HH:mm')}</Col> */}
                         <Col className={styles.colForecast}>
                           <span>
                             <span>

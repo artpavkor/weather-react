@@ -16,7 +16,7 @@ function ExportForm() {
   return (
     <Form onSubmit={handleSubmit}>
       <FormGroup className="mb-3">
-        <FormLabel>Mode</FormLabel>
+        <FormLabel>Режим</FormLabel>
         <Form.Select name="mode" defaultValue={'ru'}>
           {modes.map((elem, index) => (
             <option value={elem} key={index}>
@@ -27,7 +27,7 @@ function ExportForm() {
       </FormGroup>
       <div className="d-grid">
         <Button variant="secondary" type="submit">
-          Export
+          Экспорт
         </Button>
       </div>
     </Form>

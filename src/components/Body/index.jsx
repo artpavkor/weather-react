@@ -14,17 +14,24 @@ import ForecastWeather from './ForecastWeather';
 import TemperaturaChart from './TemperaturaChart';
 import HumidityChart from './HumidityChart';
 import Loading from './Loading';
+import ErrorModal from './ErrorModal';
 
 function Body({
   showSideBar,
-  handleClose,
+  handleShowSideBar,
+  handleCloseSideBar,
   selectedCity,
+  setSelectedCity,
   currentWeather,
   setCurrentWeather,
   forecastWeather,
   setForecastWeather,
   isLoading,
   setIsLoading,
+  showErrorModal,
+  setShowErrorModal,
+  handleCloseErrorModal,
+  handleShowErrorModal,
 }) {
   useEffect(() => {
     getCurrentWeather().then((weather) => {
@@ -37,7 +44,7 @@ function Body({
 
   setTimeout(() => {
     setIsLoading(currentWeather?.cod);
-  }, 2000);
+  }, 1000);
 
   return (
     <>
@@ -76,9 +83,17 @@ function Body({
           </Container>
           <SideBar
             showSideBar={showSideBar}
-            handleClose={handleClose}
+            handleShowSideBar={handleShowSideBar}
             setCurrentWeather={setCurrentWeather}
+            handleCloseSideBar={handleCloseSideBar}
             setForecastWeather={setForecastWeather}
+            setSelectedCity={setSelectedCity}
+          />
+          <ErrorModal
+            showErrorModal={showErrorModal}
+            setShowErrorModal={setShowErrorModal}
+            handleShowErrorModal={handleShowErrorModal}
+            handleCloseErrorModal={handleCloseErrorModal}
           />
         </div>
       )}

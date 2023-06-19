@@ -2,30 +2,27 @@ import React from 'react';
 import Offcanvas from 'react-bootstrap/Offcanvas';
 import SearchForm from './SearchForm';
 import ExportForm from './ExportForm';
-import { useState } from 'react';
 
 function SideBar({
   showSideBar,
-  handleClose,
+  handleCloseSideBar,
   setCurrentWeather,
   setForecastWeather,
+  setSelectedCity,
 }) {
-  const [selectedData, setSelectedData] = useState(null);
-
   return (
     <>
-      <Offcanvas show={showSideBar} onHide={handleClose}>
+      <Offcanvas show={showSideBar} onHide={handleCloseSideBar}>
         <Offcanvas.Header closeButton>
-          <Offcanvas.Title>Search Weather</Offcanvas.Title>
+          <Offcanvas.Title>Расширенный поиск</Offcanvas.Title>
         </Offcanvas.Header>
         <Offcanvas.Body>
           <ExportForm />
           <SearchForm
             setCurrentWeather={setCurrentWeather}
             setForecastWeather={setForecastWeather}
-            closeSideBar={handleClose}
-            selectedData={selectedData}
-            setSelectedData={setSelectedData}
+            closeSideBar={handleCloseSideBar}
+            setSelectedCity={setSelectedCity}
           />
         </Offcanvas.Body>
       </Offcanvas>

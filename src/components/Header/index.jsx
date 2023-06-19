@@ -9,7 +9,7 @@ function Header({ handleShow, onSearchChange }) {
   return (
     <Navbar expand="lg" className="shadow-sm bg-white rounded " sticky="top">
       <Container fluid="sm pe-4 ps-3">
-        <Navbar.Brand href="#home">
+        <Navbar.Brand>
           <img
             alt=""
             src={logo}

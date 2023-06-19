@@ -24,7 +24,7 @@ function InfoWeather({ currentWeather }) {
       <div className={styles.info}>
         <p>
           Ощущается как
-          <span> +{parseInt(currentWeather?.main?.feels_like)}°</span>
+          <span> {currentWeather?.main?.feels_like.toFixed(1)}°</span>
         </p>
         <p>
           Влажность:
@@ -48,11 +48,11 @@ function InfoWeather({ currentWeather }) {
         </p>
         <p>
           Мак. температура:
-          <span> {currentWeather?.main?.temp_max}°</span>
+          <span> {currentWeather?.main?.temp_max.toFixed(1)}°</span>
         </p>
         <p>
           Мин. температура:
-          <span> {currentWeather?.main?.temp_min}°</span>
+          <span> {currentWeather?.main?.temp_min.toFixed(1)}°</span>
         </p>
       </div>
       <div className={styles.day}>

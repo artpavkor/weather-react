@@ -7,10 +7,12 @@ import { getCurrentWeather, getForecastWeather } from './services/apiService';
 
 function App() {
   const [showSideBar, setShowSideBar] = useState(false);
+  const [showErrorModal, setShowErrorModal] = useState(false);
   const [selectedCity, setSelectedCity] = useState(null);
   const [currentWeather, setCurrentWeather] = useState('');
   const [forecastWeather, setForecastWeather] = useState(null);
   const [isLoading, setIsLoading] = useState(null);
+
 
   const handleOnSearchChange = async (searchData) => {
     const correctedSearchData = () => {
@@ -28,25 +30,36 @@ function App() {
     const forecastWeather = await getForecastWeather(params);
     setForecastWeather(forecastWeather);
   }
-  const handleClose = () => setShowSideBar(false);
-  const handleShow = () => setShowSideBar(true);
+
+  const handleCloseSideBar = () => setShowSideBar(false);
+  const handleShowSideBar = () => setShowSideBar(true);
+  const handleShowErrorModal = () => setShowErrorModal(true);
+  const handleCloseErrorModal = () => setShowErrorModal(false);
 
   return (
     <>
       {!isLoading ? '' :
-        <Header handleShow={handleShow} onSearchChange={handleOnSearchChange} />
+        <Header handleShow={handleShowSideBar} onSearchChange={handleOnSearchChange} />
       }
       <Container className='App'>
         <Body
           showSideBar={showSideBar}
-          handleClose={handleClose}
+          handleShowSideBar={handleShowSideBar}
+          handleCloseSideBar={handleCloseSideBar}
           forecastWeather={forecastWeather}
           setForecastWeather={setForecastWeather}
           selectedCity={selectedCity}
+          setSelectedCity={setSelectedCity}
           setCurrentWeather={setCurrentWeather}
           currentWeather={currentWeather}
           isLoading={isLoading}
-          setIsLoading={setIsLoading} />
+          setIsLoading={setIsLoading}
+          showErrorModal={showErrorModal}
+          setShowErrorModal={setShowErrorModal}
+          handleShowErrorModal={handleShowErrorModal}
+          handleCloseErrorModal={handleCloseErrorModal}
+        />
+
       </Container>
     </>
   );
