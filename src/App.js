@@ -4,14 +4,15 @@ import Header from './components/Header';
 import Body from './components/Body';
 import { useState } from 'react';
 import { getCurrentWeather, getForecastWeather } from './services/apiService';
+import ErrorModal from './components/Body/ErrorModal';
 
 function App() {
   const [showSideBar, setShowSideBar] = useState(false);
-  const [showErrorModal, setShowErrorModal] = useState(false);
   const [selectedCity, setSelectedCity] = useState(null);
   const [currentWeather, setCurrentWeather] = useState('');
   const [forecastWeather, setForecastWeather] = useState(null);
   const [isLoading, setIsLoading] = useState(null);
+  const [errorMessage, setErrorMessage] = useState(null);
 
 
   const handleOnSearchChange = async (searchData) => {
@@ -30,11 +31,9 @@ function App() {
     const forecastWeather = await getForecastWeather(params);
     setForecastWeather(forecastWeather);
   }
-
   const handleCloseSideBar = () => setShowSideBar(false);
   const handleShowSideBar = () => setShowSideBar(true);
-  const handleShowErrorModal = () => setShowErrorModal(true);
-  const handleCloseErrorModal = () => setShowErrorModal(false);
+  const handleCloseErrorModal = () => setErrorMessage(null);
 
   return (
     <>
@@ -54,12 +53,14 @@ function App() {
           currentWeather={currentWeather}
           isLoading={isLoading}
           setIsLoading={setIsLoading}
-          showErrorModal={showErrorModal}
-          setShowErrorModal={setShowErrorModal}
-          handleShowErrorModal={handleShowErrorModal}
+
+          errorMessage={errorMessage}
+          setErrorMessage={setErrorMessage}
+        />
+        <ErrorModal
+          errorMessage={errorMessage}
           handleCloseErrorModal={handleCloseErrorModal}
         />
-
       </Container>
     </>
   );

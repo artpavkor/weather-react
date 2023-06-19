@@ -1,30 +1,9 @@
 import { useState } from 'react';
 import { AsyncPaginate } from 'react-select-async-paginate';
-import { GEO_API_URL, geoApiOptions } from '../../services/apiService';
+import { loadOptions } from '../../services/apiService';
 
 const SearchHeader = ({ onSearchChange }) => {
   const [search, setSearch] = useState(null);
-
-  const loadOptions = async (inputValue) => {
-    try {
-      const response = await fetch(
-        `${GEO_API_URL}/cities?languageCode=ru&countryIds=UA,EE,LV,LT,BY&sort=name&offset=0&limit=5&minPopulation=1000&namePrefix=${inputValue}`,
-        geoApiOptions
-      );
-      const data = await response.json();
-
-      return {
-        options: data.data.map((city) => ({
-          value: `${city.latitude} ${city.longitude}`,
-          label: `${city.name} ${city.countryCode}`,
-        })),
-      };
-    } catch (err) {
-      console.error(err);
-      return { options: [] };
-    }
-  };
-
   const handleOnChange = (searchData) => {
     setSearch(searchData);
     onSearchChange(searchData);
@@ -43,13 +22,19 @@ const SearchHeader = ({ onSearchChange }) => {
       color: state.isFocused ? 'black' : null,
     }),
   };
+  const loadingMessage = () => 'Загрузка...';
+  const optionsMessage = () =>
+    'Поиск по городам осуществляется только для стран с геокодами UA, EE, LV, LT, BY, PL. Для поиска города, не входящего в этот список, вам необходимо использовать расширенный поиск.';
   return (
     <AsyncPaginate
       styles={customStyles}
       placeholder="Поиск"
       debounceTimeout={600}
       value={search}
+      loadingMessage={loadingMessage}
       onChange={handleOnChange}
+      noOptionsMessage={optionsMessage}
+      defaultAdditional={'asdas'}
       loadOptions={loadOptions}
     />
   );

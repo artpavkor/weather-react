@@ -1,19 +1,11 @@
 import Button from 'react-bootstrap/Button';
 import Modal from 'react-bootstrap/Modal';
 
-function ErrorModal({
-  showErrorModal,
-  handleShowErrorModal,
-  handleCloseErrorModal,
-}) {
+function ErrorModal({ errorMessage, handleCloseErrorModal }) {
   return (
     <>
-      <Button variant="primary" onClick={handleShowErrorModal}>
-        Launch static backdrop modal
-      </Button>
-
       <Modal
-        show={showErrorModal}
+        show={!!errorMessage}
         onHide={handleCloseErrorModal}
         backdrop="static"
         keyboard={false}
@@ -22,9 +14,16 @@ function ErrorModal({
           <Modal.Title>Ошибка</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          Извините, возникла ошибка API. Мы работаем над исправлением, вы можете
-          попробовать обновить страницу. Возможно, это поможет восстановить
-          соединение и загрузить данные корректно. Спасибо за понимание!
+          <span>Извините, возникла ошибка API.</span>
+          <br />
+          <span style={{ fontWeight: '600' }}> {errorMessage} </span>
+          <br />
+          <span>
+            Мы работаем над исправлением, вы можете попробовать обновить
+            страницу. Возможно, это поможет восстановить соединение и загрузить
+            данные корректно. <br />
+            Спасибо за понимание!
+          </span>
         </Modal.Body>
         <Modal.Footer>
           <Button
