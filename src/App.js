@@ -5,6 +5,7 @@ import Body from './components/Body';
 import { useState } from 'react';
 import { getCurrentWeather, getForecastWeather } from './services/apiService';
 import ErrorModal from './components/Body/ErrorModal';
+import Footer from './components/Footer';
 
 function App() {
   const [showSideBar, setShowSideBar] = useState(false);
@@ -62,6 +63,9 @@ function App() {
           handleCloseErrorModal={handleCloseErrorModal}
         />
       </Container>
+      {!isLoading ? '' :
+        <Footer />
+      }
     </>
   );
 }

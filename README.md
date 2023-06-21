@@ -1,70 +1,79 @@
-# Getting Started with Create React App
+# Weather App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is a weather application that displays the current weather and forecast for the next 5 days. It also features two graphs showing temperature and humidity trends. The app includes a map that shows the city where the weather is being displayed, which is retrieved using the GeoDB Cities API for latitude and longitude data. The weather data is sourced from the OpenWeatherMap API.
 
-## Available Scripts
+## Features
 
-In the project directory, you can run:
+- Current weather display
+- 5-day weather forecast
+- Temperature and humidity graphs
+- Map showing the city's location
+- Integration with GeoDB Cities API
+- Integration with OpenWeatherMap API
 
-### `npm start`
+## Technologies Used
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+The following technologies and libraries were used to develop this application:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- React.js
+- moment.js
+- Recharts
+- react-leaflet
+- react-spinners
+- Sass
+- react-bootstrap
 
-### `npm test`
+## Installation
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+1. Clone the repository:
 
-### `npm run build`
+```
+https://github.com/artpavkor/weather-react.git
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+2. Install the dependencies:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+```
+cd your-repo
+npm install
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+3. Create a config file to store your API keys. You will need API keys for both GeoDB Cities API and OpenWeatherMap API. The config file should be placed in the root directory and named `config.js`. The file should have the following structure:
 
-### `npm run eject`
+```javascript
+// config.js
+const config = {
+  geoDBCitiesAPIKey: 'YOUR_GEODB_CITIES_API_KEY',
+  openWeatherMapAPIKey: 'YOUR_OPENWEATHERMAP_API_KEY',
+};
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+export default config;
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+4. Start the development server:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+```
+npm start
+```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+5. Open the app in your browser:
 
-## Learn More
+```
+http://localhost:3000
+```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## Usage
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+1. Upon opening the app, it will display the current weather information for your current location by default.
 
-### Code Splitting
+2. You can search for a specific city by entering its name or selecting it from the suggestions that appear while typing.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+3. The app will update the weather information and display the forecast for the next 5 days.
 
-### Analyzing the Bundle Size
+4. The temperature and humidity graphs will show the trends for the selected location.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+5. The map will indicate the city's location based on the latitude and longitude data retrieved from the GeoDB Cities API.
 
-### Making a Progressive Web App
+---
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+That's it! You now have a weather application that can display current weather and forecasts, with temperature and humidity graphs, and a map showing the location. Enjoy exploring the weather!
