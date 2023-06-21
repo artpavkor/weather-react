@@ -98,7 +98,7 @@ function ForecastWeather({ forecastWeather }) {
                         </Col>
                         <Col className={styles.rowTemp}>
                           <img
-                            src={`icons/${
+                            src={`weather-react/icons/${
                               data ? data.elem.weather[0].icon : '01d'
                             }.png`}
                             alt=""

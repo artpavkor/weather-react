@@ -35,7 +35,7 @@ function DayWeather({ currentWeather, selectedCity }) {
       </div>
       <div className={styles.cityWeather}>
         <img
-          src={`icons/${
+          src={`weather-react/icons/${
             currentWeather ? currentWeather.weather[0].icon : '01d'
           }.png`}
           alt="icon-weather"
