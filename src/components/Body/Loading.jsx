@@ -1,6 +1,6 @@
-import logo from '../../img/logo.png';
 import { ScaleLoader } from 'react-spinners';
 import styles from './loading.module.scss';
+import logo from '../../img/logo.png';
 
 function Loading() {
   return (

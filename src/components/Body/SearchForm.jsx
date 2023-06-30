@@ -1,6 +1,6 @@
+import { useState } from 'react';
 import { FormGroup, FormLabel } from 'react-bootstrap';
 import Button from 'react-bootstrap/Button';
-import { useState } from 'react';
 import Form from 'react-bootstrap/Form';
 import {
   getCurrentWeather,

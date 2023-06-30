@@ -1,9 +1,9 @@
 import './App.scss';
+import { useState } from 'react';
 import Container from 'react-bootstrap/Container';
+import { getCurrentWeather, getForecastWeather } from './services/apiService';
 import Header from './components/Header';
 import Body from './components/Body';
-import { useState } from 'react';
-import { getCurrentWeather, getForecastWeather } from './services/apiService';
 import ErrorModal from './components/Body/ErrorModal';
 import Footer from './components/Footer';
 

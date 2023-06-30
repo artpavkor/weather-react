@@ -1,9 +1,9 @@
 import Container from 'react-bootstrap/Container';
+import { Col } from 'react-bootstrap';
 import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
-import logo from '../../img/logo.png';
 import SearchHeader from './SearchHeader';
-import { Col } from 'react-bootstrap';
+import logo from '../../img/logo.png';
 
 function Header({ handleShow, onSearchChange }) {
   return (

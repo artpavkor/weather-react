@@ -1,7 +1,7 @@
+import moment from 'moment';
 import sunset from '../../img/sunset.png';
 import sunrice from '../../img/sunrise.png';
 import styles from './infoweather.module.scss';
-import moment from 'moment';
 
 function InfoWeather({ currentWeather }) {
   const pressure = currentWeather?.main?.pressure / 1333;

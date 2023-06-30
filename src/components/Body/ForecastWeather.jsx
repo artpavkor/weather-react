@@ -1,14 +1,15 @@
 import moment from 'moment';
 import 'moment/locale/ru';
+import { Col, Container, Row } from 'react-bootstrap';
 import Accordion from 'react-bootstrap/Accordion';
 import styles from './forecastweather.module.scss';
-import { Col, Container, Row } from 'react-bootstrap';
 
 function ForecastWeather({ forecastWeather }) {
   const forecastTime = forecastWeather?.list.map((elem) => {
     const day = moment.unix(elem.dt).format('dddd');
     return { day, elem };
   });
+
   const monday = [];
   const tuesday = [];
   const wednesday = [];
